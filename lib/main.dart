@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.gabriela().fontFamily,
           primaryTextTheme: GoogleFonts.akatabTextTheme()),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         MyRoutes.HomeRoute: (BuildContext context) => HomePage(),
         MyRoutes.LoginRoute: (context) => LoginPageState()
