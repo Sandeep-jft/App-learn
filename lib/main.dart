@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/routes/routes.dart';
 import 'package:shopping/screens/login_page.dart';
+import 'package:shopping/widgets/themes.dart';
 import 'screens/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,14 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // home: HomePage(),
       themeMode: ThemeMode.light,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.green,
-      ),
-      theme: ThemeData(
-          primarySwatch: Colors.green,
-          fontFamily: GoogleFonts.gabriela().fontFamily,
-          primaryTextTheme: GoogleFonts.akatabTextTheme()),
+      darkTheme: ThemeWidget.getDarkTheme(context),
+      theme: ThemeWidget.themeDataWidget(context),
+      // color: Theme.of(context).primaryColor)),
       debugShowCheckedModeBanner: false,
       initialRoute: '/home',
       routes: {
