@@ -1,17 +1,109 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class CatalogItem {
   late final int id;
   late final String name;
   late final String description;
   late final num price;
   late final String picture;
+  CatalogItem({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.picture,
+  });
 
-  CatalogItem(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.price,
-      required this.picture});
+  CatalogItem copyWith({
+    int? id,
+    String? name,
+    String? description,
+    num? price,
+    String? picture,
+  }) {
+    return CatalogItem(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      picture: picture ?? this.picture,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'description': description,
+      'price': price,
+      'picture': picture,
+    };
+  }
+
+  factory CatalogItem.fromMap(Map<String, dynamic> map) {
+    return CatalogItem(
+        id: map["id"],
+        name: map["name"],
+        description: map["description"],
+        price: map["price"],
+        picture: map["picture"]);
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory CatalogItem.fromJson(String source) =>
+      CatalogItem.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'CatalogItem(id: $id, name: $name, description: $description, price: $price, picture: $picture)';
+  }
+
+  @override
+  bool operator ==(covariant CatalogItem other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.description == description &&
+        other.price == price &&
+        other.picture == picture;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        price.hashCode ^
+        picture.hashCode;
+  }
 }
+
+// CatalogItem(
+//     {required this.id,
+//     required this.name,
+//     required this.description,
+//     required this.price,
+//     required this.picture});
+
+// factory CatalogItem.fromMap(Map<String, dynamic> map) {
+//   return CatalogItem(
+//       id: map["id"],
+//       name: map["name"],
+//       description: map["description"],
+//       price: map["price"],
+//       picture: map["picture"]);
+// }
+
+// toMap() => {
+//       "id": id,
+//       "name": name,
+//       "description": description,
+//       "price": price,
+//       "picture": picture
+//     };
 
 class CatalogModel {
   static List<CatalogItem> modelItem = [
